@@ -4,9 +4,6 @@
 # See: https://docs.flatpak.org/en/latest/flatpak-command-reference.html#flatpak-preinstall
 
 # Web Browsers
-[Flatpak Preinstall org.mozilla.firefox]
-Branch=stable
-
 [Flatpak Preinstall org.mozilla.Thunderbird]
 Branch=stable
 
@@ -17,15 +14,6 @@ Branch=stable
 [Flatpak Preinstall org.gnome.Calendar]
 Branch=stable
 
-[Flatpak Preinstall org.gnome.Characters]
-Branch=stable
-
-[Flatpak Preinstall org.gnome.Connections]
-Branch=stable
-
-[Flatpak Preinstall org.gnome.Contacts]
-Branch=stable
-
 [Flatpak Preinstall org.gnome.DejaDup]
 Branch=stable
 
@@ -33,9 +21,6 @@ Branch=stable
 Branch=stable
 
 [Flatpak Preinstall org.gnome.Firmware]
-Branch=stable
-
-[Flatpak Preinstall org.gnome.Logs]
 Branch=stable
 
 [Flatpak Preinstall org.gnome.Loupe]
@@ -53,16 +38,7 @@ Branch=stable
 [Flatpak Preinstall org.gnome.SimpleScan]
 Branch=stable
 
-[Flatpak Preinstall org.gnome.TextEditor]
-Branch=stable
-
-[Flatpak Preinstall org.gnome.Weather]
-Branch=stable
-
 [Flatpak Preinstall org.gnome.baobab]
-Branch=stable
-
-[Flatpak Preinstall org.gnome.clocks]
 Branch=stable
 
 [Flatpak Preinstall org.gnome.font-viewer]
@@ -75,11 +51,14 @@ Branch=stable
 [Flatpak Preinstall com.github.rafostar.Clapper]
 Branch=stable
 
+[Flatpak Preinstall org.deluge_torrent.deluge]
+Branch=stable
+
 # System Utilities
 [Flatpak Preinstall com.github.tchx84.Flatseal]
 Branch=stable
 
-[Flatpak Preinstall com.mattjakeman.ExtensionManager]
+[Flatpak Preinstall org.gnome.Extensions]
 Branch=stable
 
 [Flatpak Preinstall io.github.flattool.Warehouse]
@@ -94,11 +73,14 @@ Branch=stable
 [Flatpak Preinstall io.gitlab.adhami3310.Impression]
 Branch=stable
 
-# Universal Blue Specific
-[Flatpak Preinstall com.ranfdev.DistroShelf]
+[Flatpak Preinstall io.github.fabrialberio.pinapp]
 Branch=stable
 
-[Flatpak Preinstall io.github.kolunmi.Bazaar]
+[Flatpak Preinstall ca.desrt.dconf-editor]
+Branch=stable
+
+# Universal Blue Specific
+[Flatpak Preinstall com.ranfdev.DistroShelf]
 Branch=stable
 
 [Flatpak Preinstall page.tesk.Refine]
@@ -112,3 +94,11 @@ IsRuntime=true
 [Flatpak Preinstall org.gtk.Gtk3theme.adw-gtk3-dark]
 Branch=3.22
 IsRuntime=true
+
+# Messengers
+[Flatpak Preinstall org.signal.Signal]
+Branch=stable
+
+# Password Managers
+[Flatpak Preinstall org.keepassxc.KeePassXC]
+Branch=stable

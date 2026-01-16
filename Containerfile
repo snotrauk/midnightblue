@@ -1,7 +1,7 @@
 ###############################################################################
 # PROJECT NAME CONFIGURATION
 ###############################################################################
-# Name: finpilot
+# Name: midnightblue
 #
 # IMPORTANT: Change "finpilot" above to your desired project name.
 # This name should be used consistently throughout the repository in:
@@ -41,8 +41,8 @@ COPY build /build
 COPY custom /custom
 # Copy from OCI containers to distinct subdirectories to avoid conflicts
 # Note: Renovate can automatically update these :latest tags to SHA-256 digests for reproducibility
-COPY --from=ghcr.io/projectbluefin/common:latest /system_files /oci/common
-COPY --from=ghcr.io/ublue-os/brew:latest /system_files /oci/brew
+#COPY --from=ghcr.io/projectbluefin/common:latest /system_files /oci/common
+#COPY --from=ghcr.io/ublue-os/brew:latest /system_files /oci/brew
 
 # Base Image - GNOME included
 FROM ghcr.io/ublue-os/silverblue-main:latest
@@ -63,7 +63,7 @@ FROM ghcr.io/ublue-os/silverblue-main:latest
 ## Uncomment the following line if one desires to make /opt immutable and be able to be used
 ## by the package manager.
 
-# RUN rm /opt && mkdir /opt
+RUN rm /opt && mkdir /opt
 
 ### MODIFICATIONS
 ## Make modifications desired in your image and install packages by modifying the build scripts.
@@ -75,13 +75,27 @@ FROM ghcr.io/ublue-os/silverblue-main:latest
 ##   - Files from @ublue-os/artwork at /oci/artwork
 ##   - Files from @ublue-os/brew at /oci/brew
 ## Scripts are run in numerical order (10-build.sh, 20-example.sh, etc.)
+# Copy Homebrew files from the brew image
+# And enable
+
+# homebrew
+COPY --from=ghcr.io/ublue-os/brew:latest /system_files /
+
+RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=tmpfs,dst=/tmp \
+    /usr/bin/systemctl preset brew-setup.service && \
+    /usr/bin/systemctl preset brew-update.timer && \
+    /usr/bin/systemctl preset brew-upgrade.timer
+
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
     /ctx/build/10-build.sh
-    
+
+
 ### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
